@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Simulación de Costos - Transporte y Crisis</title>
+    <link rel="stylesheet" href="estilos\style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Análisis de Impacto Económico en Movilidad Urbana</h1>
+        <p>Modelado interactivo de variaciones de costos logísticos ante contingencias del entorno</p>
+    </header>
+
+    <nav class="menu-navegacion">
+        <a href="#inicio">Inicio</a>
+        <a href="#contexto">Contexto</a>
+        <a href="#simulador">Simulador</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#casos-estudio">Casos de Prueba</a>
+        <a href="#conclusiones">Conclusiones</a>
+    </nav>
+
+    <main class="contenedor-principal">
+        
+        <section id="inicio" class="bloque-contenido">
+            <h2>1. Introducción y Propósito del Sistema</h2>
+            <p>El presente sistema interactivo surge como una respuesta académica y técnica para dimensionar uno de los problemas más recurrentes en la economía doméstica contemporánea: la vulnerabilidad del presupuesto destinado al transporte frente a perturbaciones del entorno social y logístico.</p>
+            <p>A través de esta interfaz, los usuarios pueden transformar datos operativos cotidianos —como las distancias de recorrido y los costos unitarios por kilómetro— en métricas financieras claras y consolidadas. El propósito central no es meramente acumulativo, sino educativo; busca dotar al ciudadano y al estudiante de herramientas lógicas para prever escenarios financieros complejos, optimizar la toma de decisiones y comprender la estructura del gasto en situaciones de crisis.</p>
+        </section>
+
+        <section id="contexto" class="bloque-contenido">
+            <h2>2. Contexto Macroeconómico de la Situación Vial</h2>
+            <p>La dinámica del transporte terrestre, tanto público como privado, se encuentra intrínsecamente ligada a la estabilidad de las infraestructuras viales. En el escenario actual, fenómenos recurrentes como los conflictos sociales, los bloqueos de carreteras, las obras civiles imprevistas, los desastres naturales o las fluctuaciones abruptas en el abastecimiento y precio de los carburantes obligan a los operadores de transporte a alterar sus rutas habituales.</p>
+            <p>La adopción forzada de desvíos o rutas secundarias provoca un incremento lineal en el kilometraje total recorrido por viaje. Este incremento no solo implica un mayor consumo neto de combustible, sino que detona un desgaste acelerado de los componentes mecánicos del vehículo (neumáticos, lubricantes y sistemas de frenado), elevando drásticamente el costo operativo por kilómetro operativo (COK).</p>
+            <p>Cuando este incremento logístico no puede ser absorbido por los subsidios estatales o por las tarifas fijas del transporte público, se traslada directamente al consumidor final en forma de tarifas elevadas, o bien golpea de manera directa el bolsillo del conductor particular. Analizar de manera cuantitativa cómo unos pocos kilómetros adicionales se acumulan a lo largo de los días y semanas permite entender el fenómeno inflacionario subyacente que reduce sistemáticamente el poder adquisitivo de las familias en las urbes afectadas.</p>
+            
+            <div class="contenedor-imagen">
+                 <img src="imagenes\699c5cc465554-990x659.jpg" alt="Icono de balance analítico financiero" style="max-width: 100%; height: auto; border-radius: 8px;">
+                </div>
+        </section>
+
+        <section id="simulador" class="bloque-contenido">
+            <h2>3. Formulario de Captura Dinámica de Datos</h2>
+            <p class="instrucciones-formulario">Introduzca con precisión las variables operativas requeridas por el modelo matemático para realizar la proyección de costos:</p>
+            
+            <form id="formularioTransporte">
+                <div class="grupo-formulario">
+                    <label for="distNormal">Distancia en condiciones normales (Kilómetros por viaje):</label>
+                    <input type="number" id="distNormal" placeholder="Ej. 10.0" min="0.1" step="0.1">
+                </div>
+                
+                <div class="grupo-formulario">
+                    <label for="distDesvio">Distancia real con desvío implementado (Kilómetros por viaje):</label>
+                    <input type="number" id="distDesvio" placeholder="Ej. 16.0" min="0.1" step="0.1">
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="costoKm">Costo financiero estimado por kilómetro recorrido (En moneda local - Bs):</label>
+                    <input type="number" id="costoKm" placeholder="Ej. 2.0" min="0.1" step="0.1">
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="viajesSemana">Frecuencia operativa (Número de viajes obligatorios por semana):</label>
+                    <input type="number" id="viajesSemana" placeholder="Ej. 5" min="1" step="1">
+                </div>
+
+                <div class="botones-accion">
+                    <button type="button" id="btnCalcular">Ejecutar Análisis</button>
+                    <button type="button" id="btnLimpiar">Restablecer Campos</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="resultados" class="bloque-contenido oculto">
+            <h2>4. Reporte Consolidado de Resultados</h2>
+            <div id="tarjetaResultado" class="tarjeta">
+                <p><strong>Costo Financiero por Trayecto Habitual:</strong> <span id="outNormal">0.00</span> Bs</p>
+                <p><strong>Costo Financiero por Trayecto con Desvío:</strong> <span id="outDesvio">0.00</span> Bs</p>
+                <p><strong>Incremento Económico Neto por Viaje Individual:</strong> <span id="outDiferencia">0.00</span> Bs</p>
+                <div class="divisor"></div>
+                <p><strong>Impacto Económico Acumulado Semanal:</strong> <span id="outSemanal">0.00</span> Bs</p>
+                <p><strong>Proyección de Pérdida Financiera Mensual:</strong> <span id="outMensual">0.00</span> Bs</p>
+                <p id="mensajeAlerta" class="texto-alerta"></p>
+            </div>
+        </section>
+
+        <div class="contenedor-imagen">
+            <img src="imagenes\filas_0_0.jpeg" alt="bolivia esta mal" style="max-width: 100%; height: auto; border-radius: 8px;">
+        </div>
+
+        <section id="casos-estudio" class="bloque-contenido">
+            <h2>5. Validación del Sistema y Casos de Estudio</h2>
+            <p>Para asegurar que los algoritmos de cálculo embebidos en el script funcionan bajo los estándares lógicos institucionales, se provee el siguiente caso de prueba estandarizado extraído de los requerimientos técnicos oficiales:</p>
+            
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>Parámetro Operativo</th>
+                        <th>Magnitud de Prueba Evaluada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Distancia base (Trayecto normal)</td>
+                        <td>10.0 Kilómetros</td>
+                    </tr>
+                    <tr>
+                        <td>Distancia alterada (Ruta de desvío)</td>
+                        <td>16.0 Kilómetros</td>
+                    </tr>
+                    <tr>
+                        <td>Costo unitario asignado por Kilómetro</td>
+                        <td>2.0 Bs / km</td>
+                    </tr>
+                    <tr>
+                        <td>Frecuencia de traslado semanal</td>
+                        <td>5.0 Viajes semanales</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="nota-tabla"><strong>Indicador de éxito:</strong> Al procesar estos datos, el motor lógico debe arrojar un incremento semanal exacto de <strong>60.00 Bs</strong> y una proyección mensual de <strong>240.00 Bs</strong>. Cualquier discrepancia denota un fallo en la captura o conversión del DOM.</p>
+        </section>
+
+        <section id="conclusiones" class="bloque-contenido">
+            <h2>6. Conclusiones y Diagnóstico Crítico</h2>
+            <p>La simulación algorítmica de variables de transporte demuestra de forma contundente que los impactos económicos aparentemente marginales a escala diaria (como un desvío menor) adquieren dimensiones críticas cuando son multiplicados exponencialmente a través de factores temporales acumulativos.</p>
+            <p>Una diferencia de pocos kilómetros genera una fuga silenciosa de capital que merma de forma directa el ingreso disponible de las familias para cubrir otras necesidades fundamentales como alimentación, salud o educación. El desarrollo de simuladores basados en tecnología web accesible capacita a las comunidades para generar datos estadísticos objetivos, permitiendo una planificación financiera preventiva ante entornos de alta volatilidad social e incertidumbre logística.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <section id="creditos">
+            <h3>Créditos de Autoría y Repositorio</h3>
+            <p>Desarrollador: <strong>Ignacio</strong></p>
+            
+            <p>Proyecto de Programación Web I</p>
+            
+            <div class="enlaces-proyecto">
+                <p><strong>Repositorio Oficial de Código:</strong> 
+                    <a href="[INSERTAR_AQUÍ_TU_ENLACE_DE_GITHUB]" target="_blank">
+                        GitHub - Source Code
+                    </a>
+                </p>
+                <p><strong>Despliegue de Producción:</strong> 
+                    <a href="[INSERTAR_AQUÍ_TU_ENLACE_DE_PÁGINA_PUBLICADA]" target="_blank">
+                        GitHub Pages - Live Demo
+                    </a>
+                </p>
+            </div>
+        </section>
+    </footer>
+
+    <script src="javascript\jv.js"></script>
+</body>
+</html>

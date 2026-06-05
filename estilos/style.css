@@ -1,0 +1,307 @@
+/* ==========================================================================
+   1. TEMA BASE POR DEFECTO: CELULARES Y TABLETS (Menos de 1024px)
+   Paleta de Colores: Tema Naturaleza/Turquesa Orgánico (Teal)
+   ========================================================================== */
+:root {
+    --primario: #0d9488;       /* Turquesa oscuro */
+    --secundario: #14b8a6;     /* Turquesa brillante */
+    --oscuro: #111827;         /* Gris casi negro */
+    --claro: #f0fdfa;          /* Fondo verdoso muy pálido */
+    --texto: #374151;          /* Texto principal */
+    --blanco: #ffffff;
+    
+    /* Estados de alerta inyectados por JS */
+    --estado-normal: #10b981;
+    --estado-alerta: #d97706;
+    --estado-critico: #dc2626;
+}
+
+/* Comportamiento global */
+html {
+    scroll-behavior: smooth; /* Permite que el menú navegue de forma suave */
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--claro);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--primario);
+    color: var(--blanco);
+    text-align: center;
+    padding: 20px 10px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+header p {
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   2. MENÚ DE NAVEGACIÓN (Diseñado en CSS Grid)
+   ========================================================================== */
+.menu-navegacion {
+    display: grid;
+    /* Divide el menú en 3 columnas iguales para móviles (2 filas de botones) */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2px;
+    background-color: var(--oscuro);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.menu-navegacion a {
+    background-color: var(--primario);
+    color: var(--blanco);
+    text-align: center;
+    padding: 12px 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+}
+
+.menu-navegacion a:hover {
+    background-color: var(--secundario);
+    color: var(--oscuro);
+}
+
+/* ==========================================================================
+   3. MAQUETACIÓN ESTRUCTURAL CON CSS GRID
+   ========================================================================== */
+.contenedor-principal {
+    display: grid;
+    grid-template-columns: 1fr; /* Una sola columna fluida en móviles */
+    gap: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.bloque-contenido {
+    background-color: var(--blanco);
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+h2 {
+    color: var(--primario);
+    margin-top: 0;
+    border-bottom: 2px solid var(--claro);
+    padding-bottom: 6px;
+    font-size: 1.3rem;
+}
+
+/* Formularios estructurados con Grid */
+#formularioTransporte {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.grupo-formulario {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+input[type="number"] {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.botones-accion {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+button {
+    padding: 12px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#btnCalcular {
+    background-color: var(--primario);
+    color: var(--blanco);
+}
+
+#btnLimpiar {
+    background-color: #94a3b8;
+    color: var(--blanco);
+}
+
+/* Clases de Control Dinámico JS */
+.oculto {
+    display: none;
+}
+
+.tarjeta {
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #f8fafc;
+    border-left: 5px solid #94a3b8;
+}
+
+.divisor {
+    height: 1px;
+    background-color: #cbd5e1;
+    margin: 12px 0;
+}
+
+.modo-normal {
+    border-left-color: var(--estado-normal);
+    background-color: #f0fdf4;
+}
+.modo-alerta {
+    border-left-color: var(--estado-alerta);
+    background-color: #fffbeb;
+}
+.modo-critico {
+    border-left-color: var(--estado-critico);
+    background-color: #fef2f2;
+}
+
+.texto-alerta {
+    font-weight: bold;
+}
+
+/* Estructura de Tablas */
+.tabla-datos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-datos th, .tabla-datos td {
+    border: 1px solid #e2e8f0;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.tabla-datos th {
+    background-color: var(--primario);
+    color: var(--blanco);
+}
+
+.nota-tabla {
+    background-color: #f8fafc;
+    padding: 8px;
+    border-left: 3px solid var(--secundario);
+    font-size: 0.85rem;
+}
+
+/* Espacios para imágenes */
+.contenedor-imagen {
+    border: 2px dashed #94a3b8;
+    background-color: #f1f5f9;
+    text-align: center;
+    padding: 25px 10px;
+    margin-top: 15px;
+}
+
+.placeholder-texto {
+    color: #475569;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Pie de página */
+footer {
+    background-color: var(--oscuro);
+    color: var(--blanco);
+    text-align: center;
+    padding: 25px 15px;
+    margin-top: 30px;
+}
+
+footer h3 {
+    margin-top: 0;
+    color: var(--secundario);
+}
+
+.enlaces-proyecto a {
+    color: var(--secundario);
+    text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   4. CAMBIO RADICAL DE COLORES Y DISEÑO PARA PC / LAPTOPS (Desde 1024px)
+   Paleta de Colores: Tema Corporativo Azul Tecnológico (Deep Blue / Slate)
+   ========================================================================== */
+@media (min-width: 1024px) {
+    :root {
+        --primario: #1e3a8a;   /* Azul Marino Profundo */
+        --secundario: #3b82f6; /* Azul Eléctrico */
+        --oscuro: #0f172a;     /* Pizarra Oscuro */
+        --claro: #eff6ff;      /* Fondo Azul sutil */
+        --texto: #1e293b;      /* Texto Gris Oscuro */
+    }
+
+    header {
+        padding: 40px 20px;
+    }
+
+    header h1 {
+        font-size: 2.3rem;
+    }
+
+    /* Redefinición del menú en Grid: una sola fila horizontal con 6 columnas */
+    .menu-navegacion {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0;
+    }
+
+    .menu-navegacion a {
+        font-size: 1rem;
+        padding: 15px 10px;
+    }
+
+    /* El contenedor principal distribuye mejor los márgenes en PC */
+    .contenedor-principal {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    /* El formulario se transforma a dos columnas en pantallas de escritorio */
+    #formularioTransporte {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .botones-accion {
+        grid-column: span 2; /* Ocupa las dos columnas */
+        grid-template-columns: repeat(2, 220px);
+        justify-content: center; /* Centra los botones en pantallas grandes */
+    }
+}
